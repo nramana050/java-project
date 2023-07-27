@@ -1,0 +1,11 @@
+name: sampleWeb_$(Date:yyyyMMdd)$(Rev:.r)
+trigger:
+- main
+pool:
+  name: default
+steps:
+- task: VSBuild@1
+  inputs:
+    solution: '**\*.sln'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package 
+ /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
